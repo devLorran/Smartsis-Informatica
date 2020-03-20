@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/av-base.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/site.css">
+
+	<title>SMARTMANAGER | Vouchers</title>	
+</head>
+
+<body>
+    <div class="container-fluid" id="layout">
+        <header class="row header">
+            <div class="col-10 col-md-6 col-lg-4 hd-brand">
+                <img src="images/logo.png" alt="SMARTMANAGER" width="600" height="67">
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-8 hd-config">
+                <div class="user">
+                    <span class="user-name">John Doe</span>
+                    <small>Smartsis</small>                
+                </div>
+                <div class="settings">
+                    <button type="button" class="ic-btn">
+                        <span class="fas fa-cogs"></span>
+                    </button>                    
+                </div>
+            </div>
+
+            <div class="col-2 col-md-1 btn-menu">
+                <button type="button" class="ic-btn hidden" onclick="showMenu()">
+                    <span class="fas fa-bars"></span>
+                </button> 
+                <button type="button" class="ic-btn visible dn" onclick="hideMenu()">
+                    <span class="fas fa-times"></span>
+                </button> 
+            </div>
+        </header>
+
+        <section class="row wrap-content">
+            <nav class="col-12 col-lg-3 col-xxl-2" id="sidebar">
+                <ul class="menu">
+                    <li class="nav-config">
+                        <div class="user">
+                            <span class="user-name">John Doe</span>
+                            <small>Smartsis</small>                
+                        </div>
+                        <div class="settings">
+                            <button type="button" class="ic-btn">
+                                <span class="fas fa-cogs"></span>
+                            </button>                    
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="fas fa-chart-bar icon"></span>
+                            <span class="caption">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="corridas.html">
+                            <span class="fas fa-taxi icon"></span>
+                            <span class="caption">Corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consulta-os.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consulta OS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="usuarios.html">
+                            <span class="fas fa-users icon"></span>
+                            <span class="caption">Usuários</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <a href="vouchers.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">Vouchers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="eticket.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">E-Ticket</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notas-fiscais.html">
+                            <span class="fas fa-file-invoice icon"></span>
+                            <span class="caption">Notas fiscais</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="centros-de-custo.html">
+                            <span class="fas fa-sitemap icon"></span>
+                            <span class="caption">Centros de custo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dados-pessoais.html">
+                            <span class="fas fa-user icon"></span>
+                            <span class="caption">Dados pessoais</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="extrato.html">
+                            <span class="fas fa-receipt icon"></span>
+                            <span class="caption">Extrato</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="taxas.html">
+                            <span class="fas fa-hand-holding-usd icon"></span>
+                            <span class="caption">Taxas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boletos.html">
+                            <span class="fas fa-file-invoice-dollar icon"></span>
+                            <span class="caption">Boletos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consultar-corridas.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consultar corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pas.html">
+                            <span class="fas fa-map-marked icon"></span>
+                            <span class="caption">PAs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-9 col-xxl-10" id="main">
+                <div class="row content">
+                    <div class="col-12">
+                        <h4 class="h4 mb-8">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">Vouchers</span>
+                        </h4>
+                    </div>
+
+                    <div class="col-12 search-form">
+                        <div class="row">                            
+                            <div class="col-12 mb-5 mt-2 doctype"> 
+                                <label class="radio inline">
+                                    <span class="caption">Todos</span>
+                                    <input type="radio" name="btn-type" checked>
+                                    <span class="checkmark"></span>
+                                </label> 
+                                <label class="radio inline">
+                                    <span class="caption">Eletrônico</span>
+                                    <input type="radio" name="btn-type">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="radio inline">
+                                    <span class="caption">Não eletrônico</span>
+                                    <input type="radio" name="btn-type">
+                                    <span class="checkmark"></span>
+                                </label>     
+                            </div>
+                            
+                            <div class="col-12 col-md-4 col-lg-3">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Situação</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                          
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Data inicial</label>
+                                    <input type="text" class="input-field">
+                                    <span class="fas fa-calendar-alt ic-field"></span>
+                                </div>   
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2">                                                
+                                <div class="form-control">
+                                    <label class="label-field">Data final</label>
+                                    <input type="text" class="input-field">
+                                    <span class="fas fa-calendar-alt ic-field"></span>
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Centro de custo</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                          
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-8 col-xl-2"> 
+                                <div class="btn-group">
+                                    <button type="button" id="" class="btn bg-default ripple">
+                                        <span class="fas fa-search icon"></span>
+                                        <span class="caption">CONSULTAR</span>
+                                    </button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-8-fs mb-0-md">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-3 col-md-1 tbl-filter">
+                                    <div class="form-control">
+                                        <label class="label-field">&nbsp;</label>
+                                        <select class="input-field">
+                                            <option value="">10</option>
+                                            <option value="">20</option>
+                                            <option value="">50</option>
+                                            <option value="">100</option>
+                                        </select>                          
+                                        <span class="fas fa-caret-down ic-field ic-select"></span>
+                                    </div>
+                            </div>
+                    
+                            <div class="col-9 col-md-5 col-xl-4 tbl-results">
+                                <p><span>Total de OS: <b>2</b></span> | <span>Valor total: <b>R$ 94,10</b></span></p>
+                            </div>
+                    
+                            <div class="col-12 col-md-6 col-xl-7 tbl-pagination">
+                                <ul class="pagination">
+                                    <li class="first">
+                                        <a href="#">Primeira</a>
+                                    </li>
+                                    <li class="prev">
+                                        <a href="#">Anterior</a>
+                                    </li>
+                                    <li class="page current">
+                                        <a href="#">01</a>
+                                    </li>
+                                    <li class="next">
+                                        <a href="#">Próxima</a>
+                                    </li>
+                                    <li class="last">
+                                        <a href="#">Última</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="tbl-box">
+                            <table class="table striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">OS</th>
+                                        <th class="text-left">VTR</th> 
+                                        <th class="text-left">USUÁRIO</th>
+                                        <th class="text-left">ORIGEM</th>
+                                        <th class="text-left">DESTINO</th>
+                                        <th class="text-left">DATA/HORA</th>
+                                        <th class="text-left">INÍCIO/FIM</th>
+                                        <th class="text-left">VALOR</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">2502</td>
+                                        <td class="text-left">002</td>
+                                        <td class="text-left">João da Costa</td>
+                                        <td class="text-left">Botafogo - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">São Cristóvão - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">03/12/2018 16:05</td>
+                                        <td class="text-left">16:06 / 16:59</td>
+                                        <td class="text-left">R$ 67,15</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesOS">
+                                                <span class="fas fa-eye"></span>
+                                            </button>                                    
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td class="text-left">2754</td>
+                                        <td class="text-left">656</td>
+                                        <td class="text-left">Júlia P. Oliveira</td>
+                                        <td class="text-left">Barra da Tijuca - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Jacarepaguá - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">02/12/2018 09:52</td>
+                                        <td class="text-left">10:00 / 10:35</td>
+                                        <td class="text-left">R$ 26,95</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesOS">
+                                                <span class="fas fa-eye"></span>
+                                            </button>                                    
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </section>        
+            
+        <footer class="row footer">
+            <div class="col-12">
+                <p><span>&copy; SMART<b style="font-weight: 900;">MANAGER</b> - Um produto Smartsis.</span> | <b style="font-weight: 900;">15:00</b></p>
+            </div>
+        </footer>
+
+        <!-- Modal Detalhes da OS -->
+        <div id="modalDetalhesOS" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">OS: 2502</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-7">                                                   
+                                <div class="map">
+                                    <img src="images/map.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-lg-5 mt-3-fs mb-3-fs mt-0-md mb-0-md paragraph">                                                   
+                                <p>Data/Hora: <span>03/12/2018 16:05</span></p>
+                                <p>VTR: <span>002</span></p>
+                                <p>Status: <span>Finalizada</span></p>
+                                <p>Centro de custo: <span>Suporte</span></p>
+                                <p>Usuário: <span>João da Costa</span></p>
+                                <p>Telefone: <span>21 98989-9898</span></p>
+                                <p>Origem: <span>Botafogo - Rio de Janeiro/RJ</span></p>
+                                <p>Destino: <span>São Cristóvão - Rio de Janeiro/RJ</span></p>
+                                <p>Início/Fim: <span>16:06 / 16:59</span></p>
+                                <p>Valor: <span>R$ 67,15</span></p>
+                                <p>Forma de pagamento: <span>Voucher eletrônico</span></p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-print icon"></span>
+                            <span class="caption">IMPRIMIR</span>
+                        </button>        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1.min.js"></script>
+    <script src="js/av-base.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+</body>
+</html>

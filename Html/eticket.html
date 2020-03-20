@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/av-base.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/site.css">
+
+	<title>SMARTMANAGER | E-Tickect</title>	
+</head>
+
+<body>
+    <div class="container-fluid" id="layout">
+        <header class="row header">
+            <div class="col-10 col-md-6 col-lg-4 hd-brand">
+                <img src="images/logo.png" alt="SMARTMANAGER" width="600" height="67">
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-8 hd-config">
+                <div class="user">
+                    <span class="user-name">John Doe</span>
+                    <small>Smartsis</small>                
+                </div>
+                <div class="settings">
+                    <button type="button" class="ic-btn">
+                        <span class="fas fa-cogs"></span>
+                    </button>                    
+                </div>
+            </div>
+
+            <div class="col-2 col-md-1 btn-menu">
+                <button type="button" class="ic-btn hidden" onclick="showMenu()">
+                    <span class="fas fa-bars"></span>
+                </button> 
+                <button type="button" class="ic-btn visible dn" onclick="hideMenu()">
+                    <span class="fas fa-times"></span>
+                </button> 
+            </div>
+        </header>
+
+        <section class="row wrap-content">
+            <nav class="col-12 col-lg-3 col-xxl-2" id="sidebar">
+                <ul class="menu">
+                    <li class="nav-config">
+                        <div class="user">
+                            <span class="user-name">John Doe</span>
+                            <small>Smartsis</small>                
+                        </div>
+                        <div class="settings">
+                            <button type="button" class="ic-btn">
+                                <span class="fas fa-cogs"></span>
+                            </button>                    
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="fas fa-chart-bar icon"></span>
+                            <span class="caption">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="corridas.html">
+                            <span class="fas fa-taxi icon"></span>
+                            <span class="caption">Corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consulta-os.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consulta OS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="usuarios.html">
+                            <span class="fas fa-users icon"></span>
+                            <span class="caption">Usuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vouchers.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">Vouchers</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <a href="eticket.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">E-Ticket</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notas-fiscais.html">
+                            <span class="fas fa-file-invoice icon"></span>
+                            <span class="caption">Notas fiscais</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="centros-de-custo.html">
+                            <span class="fas fa-sitemap icon"></span>
+                            <span class="caption">Centros de custo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dados-pessoais.html">
+                            <span class="fas fa-user icon"></span>
+                            <span class="caption">Dados pessoais</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="extrato.html">
+                            <span class="fas fa-receipt icon"></span>
+                            <span class="caption">Extrato</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="taxas.html">
+                            <span class="fas fa-hand-holding-usd icon"></span>
+                            <span class="caption">Taxas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boletos.html">
+                            <span class="fas fa-file-invoice-dollar icon"></span>
+                            <span class="caption">Boletos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consultar-corridas.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consultar corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pas.html">
+                            <span class="fas fa-map-marked icon"></span>
+                            <span class="caption">PAs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-9 col-xxl-10" id="main">
+                <div class="row content">
+                    <div class="col-12">
+                        <h4 class="h4 mb-8">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">E-ticket</span>
+                        </h4>
+                    </div>
+
+                    <div class="col-12 search-form">
+                        <div class="row">  
+                            <div class="col-12 mb-5 act-group">
+                                <button type="button" id="" class="btn bg-default ripple" data-modal="modalGerarEticket">
+                                    <span class="fas fa-plus icon"></span>
+                                    <span class="caption">GERAR E-TICKET</span>
+                                </button>
+                            </div>
+                                                        
+                            <div class="col-12 col-md-4 col-xl-3">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Status</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                          
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-5 col-xl-3">                                                 
+                                <div class="form-control">
+                                    <label class="label-field">E-Ticket</label>
+                                    <input type="text" class="input-field">
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-3"> 
+                                <div class="btn-group">
+                                    <button type="button" id="" class="btn bg-default ripple">
+                                        <span class="fas fa-search icon"></span>
+                                        <span class="caption">CONSULTAR</span>
+                                    </button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-8-fs mb-0-md">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-3 col-md-1 tbl-filter">
+                                <div class="form-control">
+                                    <label class="label-field">&nbsp;</label>
+                                    <select class="input-field">
+                                        <option value="">10</option>
+                                        <option value="">20</option>
+                                        <option value="">50</option>
+                                        <option value="">100</option>
+                                    </select>                          
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>
+                            </div>
+                    
+                            <div class="col-9 col-md-5 col-xl-4 tbl-results">
+                                <p><span><b>2</b> resultados encontrados.</span></p>
+                            </div>
+                    
+                            <div class="col-12 col-md-6 col-xl-7 tbl-pagination">
+                                <ul class="pagination">
+                                    <li class="first">
+                                        <a href="#">Primeira</a>
+                                    </li>
+                                    <li class="prev">
+                                        <a href="#">Anterior</a>
+                                    </li>
+                                    <li class="page current">
+                                        <a href="#">01</a>
+                                    </li>
+                                    <li class="next">
+                                        <a href="#">Próxima</a>
+                                    </li>
+                                    <li class="last">
+                                        <a href="#">Última</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="tbl-box">
+                            <table class="table striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">LOTE</th>
+                                        <th class="text-left">STATUS</th> 
+                                        <th class="text-left">E-TICKET</th>
+                                        <th class="text-left">CRIADO EM</th>
+                                        <th class="text-left">LIMITE</th>
+                                        <th class="text-left">VALIDADE</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">8741</td>
+                                        <td class="text-left">Aberto</td>
+                                        <td class="text-left">BEC6AC</td>
+                                        <td class="text-left">03/12/2018 16:34</td>
+                                        <td class="text-left">Ilimitado</td>
+                                        <td class="text-left">23/12/2018</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesDoEticket">
+                                                <span class="fas fa-eye"></span>
+                                            </button>
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalEditarEticket">
+                                                <span class="fas fa-edit"></span>
+                                            </button>
+                                            <button type="button" class="ic-btn ic-default">
+                                                <span class="fas fa-print"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalEnviarEticket">
+                                                <span class="fas fa-envelope"></span>
+                                            </button>                                    
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td class="text-left">6697</td>
+                                        <td class="text-left">Faturado</td>
+                                        <td class="text-left">ABC22G</td>
+                                        <td class="text-left">15/09/2018 13:02</td>
+                                        <td class="text-left">Ilimitado</td>
+                                        <td class="text-left">05/10/2018</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesDoEticket">
+                                                <span class="fas fa-eye"></span>
+                                            </button>
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalEditarEticket">
+                                                <span class="fas fa-edit"></span>
+                                            </button>
+                                            <button type="button" class="ic-btn ic-default">
+                                                <span class="fas fa-print"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalEnviarEticket">
+                                                <span class="fas fa-envelope"></span>
+                                            </button>                                    
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </section>        
+            
+        <footer class="row footer">
+            <div class="col-12">
+                <p><span>&copy; SMART<b style="font-weight: 900;">MANAGER</b> - Um produto Smartsis.</span> | <b style="font-weight: 900;">15:00</b></p>
+            </div>
+        </footer>
+
+        <!-- Modal Gerar E-Ticket -->
+        <div id="modalGerarEticket" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Gerar E-Ticket</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6 col-md-2">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Quantidade <sup class="ic-danger">*</sup></label>
+                                    <input type="text" class="input-field">  
+                                </div>   
+                            </div>
+                            <div class="col-6 col-md-2">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Limite <sup class="ic-danger">*</sup></label>
+                                    <input type="text" class="input-field">  
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-4">                                                    
+                                <div class="form-control">
+                                    <label class="label-field">Centro de custo <sup class="ic-danger">*</sup></label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                          
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                            <div class="col-6 col-md-2">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Nº de passageiros</label>
+                                    <input type="text" class="input-field">  
+                                </div>   
+                            </div>
+                            <div class="col-6 col-md-2">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">DIP/RT</label>
+                                    <input type="text" class="input-field">  
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-4">                                                   
+                                <div class="form-control disabled">
+                                    <label class="label-field">Validade</label>
+                                    <input type="text" class="input-field">  
+                                    <span class="fas fa-calendar-alt ic-field"></span>   
+
+                                    <label class="checkbox inside">
+                                        <span class="caption">Sem validade</span>
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>                                 
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-8 mb-3-fs mb-0-md">                                                   
+                                <label class="checkbox mt-3">
+                                    <span class="caption">Enviar e-mail/SMS <small class="db ic-disabled">* No máximo 8 E-Tickets</small></span>
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>  
+                            </div>
+                            <div class="col-12">
+                                <div class="box-field mb-5" id="send-emailSms" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-12 col-md-5">                                                   
+                                            <div class="form-control">
+                                                <label class="label-field">E-mail</label>
+                                                <input type="text" class="input-field">  
+                                            </div>   
+                                        </div>
+                                        <div class="col-12 col-md-4">                                                   
+                                            <div class="form-control">
+                                                <label class="label-field">Celular</label>
+                                                <input type="text" class="input-field">  
+                                            </div>   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR</span>
+                        </button>
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-eraser icon"></span>
+                            <span class="caption">LIMPAR</span>
+                        </button> 
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>          
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Detalhes do E-Ticket -->
+        <div id="modalDetalhesDoEticket" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Detalhes E-Ticket</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <div class="eticket">
+                                    <div class="lTicket">                                  
+                                        <img src="images/eticket.png" alt="">
+                                        <p class="mt-8">Peça seu táxi pelo aplicativo da FIOTAXI, pelo site da cooperativa ou pelo telefone<br> <b><small>21</small> 3866-1702</b></p>
+                                    </div>
+                                    <div class="paragraph">                                                   
+                                        <p class="mb-5">E-Ticket: <span>BEC6AC</span></p>
+                                        <p>Cliente: <span>SMARTSIS</span></p>
+                                        <p>Cooperativa: <span>SMARTSIS</span></p>
+                                        <p>Status: <span>ABERTO</span></p>
+                                        <p>Validade: <span>07/03/2019</span></p>
+
+                                        <p class="mt-5"><b><small class="ic-default">Válido somente para a cidade do Rio de Janeiro.</small></b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Editar E-Ticket -->
+        <div id="modalEditarEticket" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Editar E-Ticket</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 ">
+                                <div class="eticket">
+                                    <div class="lTicket">                                  
+                                        <img src="images/eticket.png" alt="">
+                                        <p class="mt-8">Peça seu táxi pelo aplicativo da FIOTAXI, pelo site da cooperativa ou pelo telefone<br> <b><small>21</small> 3866-1702</b></p>
+                                    </div>
+                                    <div class="paragraph">                                                   
+                                        <p class="mb-5">E-Ticket: <span>BEC6AC</span></p>
+                                        <p>Cliente: <span>SMARTSIS</span></p>
+                                        <p>Cooperativa: <span>SMARTSIS</span></p>
+                                        <p>
+                                            <label>Status: </label> 
+                                            <select class="input-field ml-2" readonly>
+                                                <option value="">ABERTO</option>
+                                            </select>
+                                            <span class="fas fa-caret-down ic-field ic-select"></span>
+                                        </p>
+                                        <p>Status: <span>ABERTO</span></p>
+                                        <p>Validade: <span>07/03/2019</span></p>
+
+                                        <p class="mt-5"><b><small class="ic-default">Válido somente para a cidade do Rio de Janeiro.</small></b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR ALTERAÇÃO</span>
+                        </button>
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>          
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Enviar E-Ticket -->
+        <div id="modalEnviarEticket" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Enviar E-Ticket</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="eticket">
+                                    <div class="lTicket">                                  
+                                        <img src="images/eticket.png" alt="">
+                                        <p class="mt-8">Peça seu táxi pelo aplicativo da FIOTAXI, pelo site da cooperativa ou pelo telefone<br> <b><small>21</small> 3866-1702</b></p>
+                                    </div>
+                                    <div class="paragraph">                                                   
+                                        <p class="mb-5">E-Ticket: <span>BEC6AC</span></p>
+                                        <p>Cliente: <span>SMARTSIS</span></p>
+                                        <p>Cooperativa: <span>SMARTSIS</span></p>
+                                        <p>Status: <span>ABERTO</span></p>
+                                        <p>Validade: <span>07/03/2019</span></p>
+
+                                        <p class="mt-5"><b><small class="ic-default">Válido somente para a cidade do Rio de Janeiro.</small></b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-12 paragraph">
+                                <p>Insira um e-mail e/ou um telefone celular nos campos abaixo para enviar as informações do E-Ticket para o usuário.</p>
+                            </div>
+
+                            <div class="col-12 my-5"><span class="line"></span></div>
+
+                            <div class="col-12">                                                 
+                                <div class="form-control">
+                                    <label class="label-field">E-mail</label>
+                                    <input type="text" class="input-field">
+                                </div>   
+                            </div>
+
+                            <div class="col-12">                                                 
+                                <div class="form-control">
+                                    <label class="label-field">Celular</label>
+                                    <input type="text" class="input-field">
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-paper-plane icon"></span>
+                            <span class="caption">ENVIAR</span>
+                        </button>
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1.min.js"></script>
+    <script src="js/av-base.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+</body>
+</html>

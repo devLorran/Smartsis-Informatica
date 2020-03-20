@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/av-base.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/site.css">
+
+	<title>SMARTMANAGER | Corridas</title>	
+</head>
+
+<body>
+    <div class="container-fluid" id="layout">
+        <header class="row header">
+            <div class="col-10 col-md-6 col-lg-4 hd-brand">
+                <img src="images/logo.png" alt="SMARTMANAGER" width="600" height="67">
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-8 hd-config">
+                <div class="user">
+                    <span class="user-name">John Doe</span>
+                    <small>Smartsis</small>                
+                </div>
+                <div class="settings">
+                    <button type="button" class="ic-btn">
+                        <span class="fas fa-cogs"></span>
+                    </button>                    
+                </div>
+            </div>
+
+            <div class="col-2 col-md-1 btn-menu">
+                <button type="button" class="ic-btn hidden" onclick="showMenu()">
+                    <span class="fas fa-bars"></span>
+                </button> 
+                <button type="button" class="ic-btn visible dn" onclick="hideMenu()">
+                    <span class="fas fa-times"></span>
+                </button> 
+            </div>
+        </header>
+
+        <section class="row wrap-content">
+            <nav class="col-12 col-lg-3 col-xxl-2" id="sidebar">
+                <ul class="menu">
+                    <li class="nav-config">
+                        <div class="user">
+                            <span class="user-name">John Doe</span>
+                            <small>Smartsis</small>                
+                        </div>
+                        <div class="settings">
+                            <button type="button" class="ic-btn">
+                                <span class="fas fa-cogs"></span>
+                            </button>                    
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="fas fa-chart-bar icon"></span>
+                            <span class="caption">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <a href="corridas.html">
+                            <span class="fas fa-taxi icon"></span>
+                            <span class="caption">Corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consulta-os.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consulta OS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="usuarios.html">
+                            <span class="fas fa-users icon"></span>
+                            <span class="caption">Usuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vouchers.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">Vouchers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="eticket.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">E-Ticket</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notas-fiscais.html">
+                            <span class="fas fa-file-invoice icon"></span>
+                            <span class="caption">Notas fiscais</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="centros-de-custo.html">
+                            <span class="fas fa-sitemap icon"></span>
+                            <span class="caption">Centros de custo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dados-pessoais.html">
+                            <span class="fas fa-user icon"></span>
+                            <span class="caption">Dados pessoais</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="extrato.html">
+                            <span class="fas fa-receipt icon"></span>
+                            <span class="caption">Extrato</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="taxas.html">
+                            <span class="fas fa-hand-holding-usd icon"></span>
+                            <span class="caption">Taxas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boletos.html">
+                            <span class="fas fa-file-invoice-dollar icon"></span>
+                            <span class="caption">Boletos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consultar-corridas.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consultar corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pas.html">
+                            <span class="fas fa-map-marked icon"></span>
+                            <span class="caption">PAs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-9 col-xxl-10" id="main">
+                <div class="row content">
+                    <div class="col-12">
+                        <h4 class="h4 mb-8">
+                            <span class="fas fa-taxi icon"></span>
+                            <span class="caption">Corridas</span>
+                        </h4>
+                    </div>
+
+                    <div class="col-12 mb-6">
+                        <div class="row">
+                            <div class="col-12 mb-5-fs act-group">
+                                <button type="button" id="" class="btn bg-default ripple" data-modal="modalSolicitacaoDeCorrida">
+                                    <span class="fas fa-plus icon"></span>
+                                    <span class="caption">NOVA SOLICITAÇÃO</span>
+                                </button>
+                            </div>
+                            
+                            <div class="col-12 flt-status">
+                                <label class="checkbox inline">
+                                    <span class="caption">Todas</span>
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+    
+                                <label class="checkbox inline">
+                                    <span class="caption">Programada</span>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+    
+                                <label class="checkbox inline">
+                                    <span class="caption">Aguardando</span>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+    
+                                <label class="checkbox inline">
+                                    <span class="caption">Tripulado</span>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+    
+                                <label class="checkbox inline">
+                                    <span class="caption">Cancelada</span>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+    
+                                <button type="button" id="" class="btn-icon bg-default ripple">
+                                    <span class="fas fa-sync-alt icon"></span>
+                                </button>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="col-12">
+                        <div class="tbl-box">
+                            <table class="table striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">OS</th>
+                                        <th class="text-left">VTR</th> 
+                                        <th class="text-left">STATUS</th>
+                                        <th class="text-left">DATA/HORA</th>
+                                        <th class="text-left">ORIGEM</th>
+                                        <th class="text-left">DESTINO</th>
+                                        <th class="text-left">PASSAGEIRO</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">1213</td>
+                                        <td class="text-left">-</td>
+                                        <td class="text-left">
+                                            <span class="fas fa-spinner fa-spin icon"></span>
+                                            <span class="caption">Aguardando</span>
+                                        </td>
+                                        <td class="text-left">30/11/2018 18:03</td>
+                                        <td class="text-left">Benfica - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Vila Isabel - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Andréa Viana</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesDaCorrida">
+                                                <span class="fas fa-eye"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left">1212</td>
+                                        <td class="text-left">004</td>
+                                        <td class="text-left">
+                                            <span class="fas fa-clock icon"></span>
+                                            <span class="caption">Programada</span>
+                                        </td>
+                                        <td class="text-left">30/11/2018 18:00</td>
+                                        <td class="text-left">Andaraí - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Irajá - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">João dos Santos</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesDaCorrida">
+                                                <span class="fas fa-eye"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left">1211</td>
+                                        <td class="text-left">009</td>
+                                        <td class="text-left">
+                                            <span class="fas fa-taxi icon"></span>
+                                            <span class="caption">Tripulado</span>
+                                        </td>
+                                        <td class="text-left">30/11/2018 17:55</td>
+                                        <td class="text-left">Tijuca - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Centro - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Maria da Silva</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesDaCorrida">
+                                                <span class="fas fa-eye"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left">1210</td>
+                                        <td class="text-left">-</td>
+                                        <td class="text-left">
+                                            <span class="fas fa-times-circle icon"></span>
+                                            <span class="caption">Cancelada</span>
+                                        </td>
+                                        <td class="text-left">30/11/2018 17:54</td>
+                                        <td class="text-left">Usina - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">Cachambi - Rio de Janeiro/RJ</td>
+                                        <td class="text-left">José Bonifácio</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalDetalhesDaCorrida">
+                                                <span class="fas fa-eye"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </section>        
+            
+        <footer class="row footer">
+            <div class="col-12">
+                <p><span>&copy; SMART<b style="font-weight: 900;">MANAGER</b> - Um produto Smartsis.</span> | <b style="font-weight: 900;">15:00</b></p>
+            </div>
+        </footer>
+
+        <!-- Modal Solicitação de corrida -->
+        <div id="modalSolicitacaoDeCorrida" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Solicitação de corrida</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-md-4">                                                   
+                                <div class="form-control custom">
+                                    <label class="label-field">Telefone</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                    <button type="button" id="" class="btn-icon bg-default ripple">
+                                        <span class="fas fa-plus icon"></span>
+                                    </button>                                 
+                                </div>    
+                            </div>
+                            <div class="col-12 col-md-8">                                                   
+                                <div class="form-control custom">
+                                    <label class="label-field">Origem</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione um favorito ou clique no "+" para outro endereço...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                    <button type="button" id="" class="btn-icon bg-default ripple">
+                                        <span class="fas fa-plus icon"></span>
+                                    </button>                                 
+                                </div>    
+                            </div>
+
+                            <div class="col-12 mt-3 mb-5">                                                   
+                                <h6 class="h6">Bairro de destino</h6>  
+                            </div>
+
+                            <div class="col-4 col-md-2">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Estado</label>
+                                    <select class="input-field">
+                                        <option value="">RJ</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>    
+                            </div>
+                            <div class="col-8 col-md-5">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Cidade</label>
+                                    <select class="input-field">
+                                        <option value="">RIO DE JANEIRO</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>    
+                            </div>
+                            <div class="col-12 col-md-5">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Bairro</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>    
+                            </div>
+
+                            <div class="col-12 col-md-5">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Forma de pagamento</label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>    
+                            </div>
+
+                            <div class="col-12 mt-3 mb-5">                                                   
+                                <h6 class="h6">
+                                    <button type="button" class="bg-invisible" data-collapse="more-options">
+                                        <span class="caption">Mais opções</span>
+                                        <span class="fas fa-caret-down icon"></span>                                        
+                                    </button>
+                                </h6>  
+                            </div>
+
+                            <div class="col-12 mb-2 avCollpase" id="more-options" style="display: none;">
+                                <div class="box-tab">
+                                    <ul class="tabs">
+                                        <li class="tab-link">
+                                            <a data-toggle="tab" href="#usuario">Usuário</a>                                
+                                        </li>
+                                        <li class="tab-link">
+                                            <a data-toggle="tab" href="#programada">Programada</a>
+                                        </li>
+                                        <li class="tab-link">
+                                            <a data-toggle="tab" href="#opcoes">Opções</a>
+                                        </li>
+                                        <li class="tab-link">
+                                            <a data-toggle="tab" href="#extras">Informações extras</a>
+                                        </li>
+                                    </ul>
+            
+                                    <div id="usuario" class="tab-content">
+                                        <div class="row">
+                                            <div class="col-12 col-md-4">                                                   
+                                                <div class="form-control">
+                                                    <label class="checkbox mb-1">
+                                                        <span class="caption">Usuário</span>
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                    <input type="text" class="input-field" disabled> 
+                                                </div>    
+                                            </div>
+
+                                            <div class="col-12 col-md-8">  
+                                                <div class="form-control">
+                                                    <p class="obs">* Nome do passageiro em caso de não ser o solicitante.</p>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div id="programada" class="tab-content">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">                                                   
+                                                <div class="form-control">
+                                                    <label class="checkbox">
+                                                        <span class="caption">Programada</span>
+                                                        <input type="checkbox" checked>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </div>    
+                                            </div>
+
+                                            <div class="col-12 col-md-4">  
+                                                <div class="form-control">
+                                                    <label class="label-field">Data/Hora</label>
+                                                    <input type="text" class="input-field" value="30/11/2018 16:00">
+                                                    <span class="fas fa-calendar-alt ic-field"></span>
+                                                </div>   
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div id="opcoes" class="tab-content">
+                                        <div class="row">
+                                            <div class="col-12 mb-3">  
+                                                <label class="checkbox">
+                                                    <span class="caption">Todos</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+
+                                            <div class="col-12 col-md-3">  
+                                                <label class="checkbox">
+                                                    <span class="caption">Animais</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Ps fumante</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Passe livre</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>  
+                                            </div>                                        
+
+                                            <div class="col-12 col-md-3">  
+                                                <label class="checkbox">
+                                                    <span class="caption">Mercado</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Menor</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Motel</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>  
+                                            </div>
+
+                                            <div class="col-12 col-md-3">  
+                                                <label class="checkbox">
+                                                    <span class="caption">Encomenda</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Cartão Elo</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Cartão Mastercard</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>  
+                                            </div>
+
+                                            <div class="col-12 col-md-3">  
+                                                <label class="checkbox">
+                                                    <span class="caption">Cadeira de rodas</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Ar condicionado</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="checkbox">
+                                                    <span class="caption">Motorista não fumante</span>
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </label>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="extras" class="tab-content">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">  
+                                                <div class="form-control txtarea">
+                                                    <label class="label-field">Restrições extras</label>
+                                                    <textarea class="input-field"></textarea>
+                                                </div>   
+                                            </div>
+
+                                            <div class="col-12 col-md-6">  
+                                                <div class="form-control txtarea">
+                                                    <label class="label-field">Referência da solicitação</label>
+                                                    <textarea class="input-field"></textarea>
+                                                </div>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">ENVIAR SOLICITAÇÃO</span>
+                        </button>
+                        
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-eraser icon"></span>
+                            <span class="caption">LIMPAR</span>
+                        </button>
+
+                        <button type="button" id="" class="btn bg-danger ripple" onclick="closeModal(this);">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Detalhes da corrida -->
+        <div id="modalDetalhesDaCorrida" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">OS: 1211</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-7">                                                   
+                                <div class="map">
+                                    <img src="images/map.jpg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-lg-5 mt-3-fs mb-3-fs mt-0-md mb-0-md paragraph">                                                   
+                                <p>Data/Hora: <span>30/11/2018 18:00</span></p>
+                                <p>Matrícula/CPF: <span>123.456.789-10</span></p>
+                                <p>Centro de custo: <span>Desenvolvimento</span></p>
+                                <p>Cliente: <span>Smartsis</span></p>
+                                <p>Usuário: <span>João dos Santos</span></p>
+                                <p>VTR: <span>004</span></p>
+                                <p>Telefone: <span>21 98989-9898</span></p>
+                                <p>Status: <span>Programada</span></p>
+                                <p>
+                                    <label>Data/Hora:</label> 
+                                    <input type="text" class="input-field ml-2" value="30/11/2018 18:00" readonly> 
+                                    <button type="button" class="input-btn"><span class="fas fa-edit icon"></span></button>
+                                </p>
+                                <p>Origem: <span>Benfica - Rio de Janeiro/RJ</span></p>
+                                <p>Destino: <span>Vila Isabel - Rio de Janeiro/RJ</span></p>
+                                <p>Forma de pagamento: <span>Dinheiro</span></p>
+                            </div>
+
+                            <div class="col-12 mb-2 avCollpase" id="share-center" style="display: none;">
+                                <div class="row">
+                                    <div class="col-12 mt-5 mb-5">                                                   
+                                        <h5 class="h5">Dividir por centro de custo</h5>  
+                                    </div>
+
+                                    <div class="col-12 col-md-4">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Centro de custo</label>
+                                            <select class="input-field">
+                                                <option value="">Selecione...</option>
+                                            </select>                            
+                                            <span class="fas fa-caret-down ic-field ic-select"></span>
+                                        </div>    
+                                    </div>
+
+                                    <div class="col-8 col-md-3">                                                   
+                                        <div class="form-control custom">
+                                            <label class="label-field">Porcentagem %</label>
+                                            <input type="text" class="input-field">  
+                                            <button type="button" id="" class="btn-icon bg-default ripple">
+                                                <span class="fas fa-plus icon"></span>
+                                            </button> 
+                                        </div>    
+                                    </div>
+
+                                    <div class="col-12 col-md-5">   
+                                        <div class="tbl-box">
+                                            <table class="table striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-left">Centro de custo</th>
+                                                        <th class="text-center">%</th> 
+                                                        <th class="text-left"></th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-left">Desenvolvimento</td>
+                                                        <td class="text-center">55%</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button>                                        
+                                                        </td>
+                                                    </tr>
+    
+                                                    <tr>
+                                                        <td class="text-left">Administração</td>
+                                                        <td class="text-center">45%</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button>                                        
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <!-- Visible quando abrir a div para divisão por centro de custo -->
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR</span>
+                        </button>
+                        <!-- Visible quando abrir a div para divisão por centro de custo -->
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-print icon"></span>
+                            <span class="caption">IMPRIMIR</span>
+                        </button>   
+                        
+                        <!-- Disabled quando abrir a div para divisão por centro de custo -->
+                        <button type="button" id="" class="btn bg-default ripple" data-collapse="share-center">
+                            <span class="fas fa-share-alt icon"></span>
+                            <span class="caption">DIVIDIR POR CENTRO DE CUSTO</span>
+                        </button>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1.min.js"></script>
+    <script src="js/av-base.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+</body>
+</html>

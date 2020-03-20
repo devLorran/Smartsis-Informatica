@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/av-base.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/site.css">
+
+	<title>SMARTMANAGER | Dados pessoais</title>	
+</head>
+
+<body>
+    <div class="container-fluid" id="layout">
+        <header class="row header">
+            <div class="col-10 col-md-6 col-lg-4 hd-brand">
+                <img src="images/logo.png" alt="SMARTMANAGER" width="600" height="67">
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-8 hd-config">
+                <div class="user">
+                    <span class="user-name">John Doe</span>
+                    <small>Smartsis</small>                
+                </div>
+                <div class="settings">
+                    <button type="button" class="ic-btn">
+                        <span class="fas fa-cogs"></span>
+                    </button>                    
+                </div>
+            </div>
+
+            <div class="col-2 col-md-1 btn-menu">
+                <button type="button" class="ic-btn hidden" onclick="showMenu()">
+                    <span class="fas fa-bars"></span>
+                </button> 
+                <button type="button" class="ic-btn visible dn" onclick="hideMenu()">
+                    <span class="fas fa-times"></span>
+                </button> 
+            </div>
+        </header>
+
+        <section class="row wrap-content">
+            <nav class="col-12 col-lg-3 col-xxl-2" id="sidebar">
+                <ul class="menu">
+                    <li class="nav-config">
+                        <div class="user">
+                            <span class="user-name">John Doe</span>
+                            <small>Smartsis</small>                
+                        </div>
+                        <div class="settings">
+                            <button type="button" class="ic-btn">
+                                <span class="fas fa-cogs"></span>
+                            </button>                    
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="dashboard.html">
+                            <span class="fas fa-chart-bar icon"></span>
+                            <span class="caption">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="corridas.html">
+                            <span class="fas fa-taxi icon"></span>
+                            <span class="caption">Corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consulta-os.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consulta OS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="usuarios.html">
+                            <span class="fas fa-users icon"></span>
+                            <span class="caption">Usuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="vouchers.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">Vouchers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="eticket.html">
+                            <span class="fas fa-ticket-alt icon ic-rotate"></span>
+                            <span class="caption">E-Ticket</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="notas-fiscais.html">
+                            <span class="fas fa-file-invoice icon"></span>
+                            <span class="caption">Notas fiscais</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="centros-de-custo.html">
+                            <span class="fas fa-sitemap icon"></span>
+                            <span class="caption">Centros de custo</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <a href="dados-pessoais.html">
+                            <span class="fas fa-user icon"></span>
+                            <span class="caption">Dados pessoais</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="extrato.html">
+                            <span class="fas fa-receipt icon"></span>
+                            <span class="caption">Extrato</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="taxas.html">
+                            <span class="fas fa-hand-holding-usd icon"></span>
+                            <span class="caption">Taxas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="boletos.html">
+                            <span class="fas fa-file-invoice-dollar icon"></span>
+                            <span class="caption">Boletos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="consultar-corridas.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consultar corridas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pas.html">
+                            <span class="fas fa-map-marked icon"></span>
+                            <span class="caption">PAs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-9 col-xxl-10" id="main">
+                <div class="row content">
+                    <div class="col-12">
+                        <h4 class="h4 mb-8">
+                            <span class="fas fa-user icon"></span>
+                            <span class="caption">Dados pessoais</span>
+                        </h4>
+                    </div>
+
+                    <div class="col-12 search-form">
+                        <div class="row">  
+                            <div class="col-12 mb-5 act-group">
+                                <button type="button" id="" class="btn bg-default ripple" data-modal="modalNovoTelefone">
+                                    <span class="fas fa-plus icon"></span>
+                                    <span class="caption">NOVO TELEFONE</span>
+                                </button>
+                                <button type="button" id="" class="btn bg-default ripple" data-modal="modalNovoEndereco">
+                                    <span class="fas fa-plus icon"></span>
+                                    <span class="caption">NOVO ENDEREÇO</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-8-fs mb-0-md">
+                        <div class="row" style="align-items: center;">
+                            <div class="col-3 col-md-1 tbl-filter">
+                                <div class="form-control">
+                                    <label class="label-field">&nbsp;</label>
+                                    <select class="input-field">
+                                        <option value="">10</option>
+                                        <option value="">20</option>
+                                        <option value="">50</option>
+                                        <option value="">100</option>
+                                    </select>                          
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>
+                            </div>
+                    
+                            <div class="col-9 col-md-5 col-xl-4 tbl-results">
+                                <p><span><b>3</b> resultados encontrados.</span></p>
+                            </div>
+                    
+                            <div class="col-12 col-md-6 col-xl-7 tbl-pagination">
+                                <ul class="pagination">
+                                    <li class="first">
+                                        <a href="#">Primeira</a>
+                                    </li>
+                                    <li class="prev">
+                                        <a href="#">Anterior</a>
+                                    </li>
+                                    <li class="page current">
+                                        <a href="#">01</a>
+                                    </li>
+                                    <li class="next">
+                                        <a href="#">Próxima</a>
+                                    </li>
+                                    <li class="last">
+                                        <a href="#">Última</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="tbl-box">
+                            <table class="table tbl-inside striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 50px;"></th>
+                                        <th class="text-left" style="width: 295px;">TELEFONE</th>
+                                        <th class="text-left">USUÁRIO</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr data-tbl="collapse">
+                                        <td class="text-center">                                                
+                                            <button type="button" class="ic-btn ic-default slideTbl">
+                                                <span class="fas fa-caret-down ic-rotate fa-lg"></span>
+                                            </button>                                             
+                                        </td>
+                                        <td class="text-left">21 98989-9898</td>
+                                        <td class="text-left">Andréa Viana</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoTelefone">
+                                                <span class="fas fa-edit"></span>
+                                            </button>   
+                                            <button type="button" class="ic-btn ic-danger">
+                                                <span class="fas fa-trash"></span>
+                                            </button>                                     
+                                        </td>
+                                    </tr>
+                                    <tr class="toggle-collapse">
+                                        <td colspan="4" class="p-0">
+                                            <table class="table striped sub-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" style="width: 50px;"></th>
+                                                        <th class="text-left">RUA</th>
+                                                        <th class="text-left">Nº</th>
+                                                        <th class="text-left">COMPLEMENTO</th>
+                                                        <th class="text-left">BAIRRO</th>
+                                                        <th class="text-left">CIDADE/UF</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Rua São Luiz Gonzaga</td>
+                                                        <td>1.989</td>
+                                                        <td>Galpão</td>
+                                                        <td>São Cristóvão</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Rua Barão do Bom Retiro</td>
+                                                        <td>522</td>
+                                                        <td>Aptº 1.029</td>
+                                                        <td>Engenho Novo</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Avenida das Américas</td>
+                                                        <td>33.333</td>
+                                                        <td>Sala 233</td>
+                                                        <td>Barra da Tijuca</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-tbl="collapse">
+                                        <td class="text-center">                                                
+                                            <button type="button" class="ic-btn ic-default slideTbl">
+                                                <span class="fas fa-caret-down ic-rotate fa-lg"></span>
+                                            </button>                                             
+                                        </td>
+                                        <td class="text-left">21 98989-9898</td>
+                                        <td class="text-left">Andréa Viana</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoTelefone">
+                                                <span class="fas fa-edit"></span>
+                                            </button>   
+                                            <button type="button" class="ic-btn ic-danger">
+                                                <span class="fas fa-trash"></span>
+                                            </button>                                     
+                                        </td>
+                                    </tr>
+                                    <tr class="toggle-collapse">
+                                        <td colspan="4" class="p-0">
+                                            <table class="table striped sub-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" style="width: 50px;"></th>
+                                                        <th class="text-left">RUA</th>
+                                                        <th class="text-left">Nº</th>
+                                                        <th class="text-left">COMPLEMENTO</th>
+                                                        <th class="text-left">BAIRRO</th>
+                                                        <th class="text-left">CIDADE/UF</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Rua São Luiz Gonzaga</td>
+                                                        <td>1.989</td>
+                                                        <td>Galpão</td>
+                                                        <td>São Cristóvão</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Rua Barão do Bom Retiro</td>
+                                                        <td>522</td>
+                                                        <td>Aptº 1.029</td>
+                                                        <td>Engenho Novo</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Avenida das Américas</td>
+                                                        <td>33.333</td>
+                                                        <td>Sala 233</td>
+                                                        <td>Barra da Tijuca</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr data-tbl="collapse">
+                                        <td class="text-center">                                                
+                                            <button type="button" class="ic-btn ic-default slideTbl">
+                                                <span class="fas fa-caret-down ic-rotate fa-lg"></span>
+                                            </button>                                             
+                                        </td>
+                                        <td class="text-left">21 98989-9898</td>
+                                        <td class="text-left">Andréa Viana</td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoTelefone">
+                                                <span class="fas fa-edit"></span>
+                                            </button>   
+                                            <button type="button" class="ic-btn ic-danger">
+                                                <span class="fas fa-trash"></span>
+                                            </button>                                     
+                                        </td>
+                                    </tr>
+                                    <tr class="toggle-collapse">
+                                        <td colspan="4" class="p-0">
+                                            <table class="table striped sub-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" style="width: 50px;"></th>
+                                                        <th class="text-left">RUA</th>
+                                                        <th class="text-left">Nº</th>
+                                                        <th class="text-left">COMPLEMENTO</th>
+                                                        <th class="text-left">BAIRRO</th>
+                                                        <th class="text-left">CIDADE/UF</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Rua São Luiz Gonzaga</td>
+                                                        <td>1.989</td>
+                                                        <td>Galpão</td>
+                                                        <td>São Cristóvão</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Rua Barão do Bom Retiro</td>
+                                                        <td>522</td>
+                                                        <td>Aptº 1.029</td>
+                                                        <td>Engenho Novo</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Avenida das Américas</td>
+                                                        <td>33.333</td>
+                                                        <td>Sala 233</td>
+                                                        <td>Barra da Tijuca</td>
+                                                        <td>Rio de Janeiro/RJ</td>
+                                                        <td class="text-right tbl-actions">
+                                                            <button type="button" class="ic-btn ic-default" data-modal="modalNovoEndereco">
+                                                                <span class="fas fa-edit"></span>
+                                                            </button> 
+                                                            <button type="button" class="ic-btn ic-danger">
+                                                                <span class="fas fa-trash"></span>
+                                                            </button> 
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </section>
+            
+        <footer class="row footer">
+            <div class="col-12">
+                <p><span>&copy; SMART<b style="font-weight: 900;">MANAGER</b> - Um produto Smartsis.</span> | <b style="font-weight: 900;">15:00</b></p>
+            </div>
+        </footer>
+
+        <!-- Modal Novo Telefone -->
+        <div id="modalNovoTelefone" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Novo telefone</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-md-5">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Telefone <sup class="ic-danger">*</sup></label>
+                                    <input type="text" class="input-field"> 
+                                </div>    
+                            </div>
+                            <div class="col-12 col-md-7">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Usuário</label>
+                                    <input type="text" class="input-field"> 
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR</span>
+                        </button> 
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-eraser icon"></span>
+                            <span class="caption">LIMPAR</span>
+                        </button>
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Novo Endereço -->
+        <div id="modalNovoEndereco" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h3 class="modal-title">Novo endereço</h3>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">                                                   
+                                <div class="row">
+                                    <div class="col-12 col-md-10 col-lg-9">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Rua/Local <sup class="ic-danger">*</sup></label>
+                                            <input type="text" class="input-field"> 
+                                        </div>    
+                                    </div>
+                                    <div class="col-3 col-md-2 col-lg-3">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Nº <sup class="ic-danger">*</sup></label>
+                                            <input type="text" class="input-field"> 
+                                        </div>    
+                                    </div>
+                                    <div class="col-9 col-md-6">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Complemento</label>
+                                            <input type="text" class="input-field"> 
+                                        </div>    
+                                    </div>
+                                    <div class="col-12 col-md-6">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Bairro</label>
+                                            <input type="text" class="input-field"> 
+                                        </div>    
+                                    </div>                                    
+                                    <div class="col-3 col-md-2 col-lg-3">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Estado</label>
+                                            <select class="input-field">
+                                                <option value="">RJ</option>
+                                            </select>                            
+                                            <span class="fas fa-caret-down ic-field ic-select"></span>
+                                        </div>    
+                                    </div> 
+                                    <div class="col-9 col-md-4 col-lg-9">                                                   
+                                        <div class="form-control">
+                                            <label class="label-field">Cidade</label>
+                                            <select class="input-field">
+                                                <option value="">RIO DE JANEIRO</option>
+                                            </select>                            
+                                            <span class="fas fa-caret-down ic-field ic-select"></span>
+                                        </div>    
+                                    </div>  
+                                    <div class="col-12">                                                   
+                                        <div class="form-control txtarea">
+                                            <label class="label-field">Referência</label>
+                                            <textarea class="input-field"></textarea>
+                                        </div>    
+                                    </div>                                   
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6 mt-5-fs">                                                   
+                                <div class="map">
+                                    <img src="images/map.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR</span>
+                        </button> 
+                        <button type="button" id="" class="btn bg-default ripple">
+                            <span class="fas fa-eraser icon"></span>
+                            <span class="caption">LIMPAR</span>
+                        </button>
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1.min.js"></script>
+    <script src="js/av-base.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+</body>
+</html>
