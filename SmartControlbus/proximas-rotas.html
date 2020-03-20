@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/av-base.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/site.css">
+
+	<title>SMARTCONTROLBUS | Controle de rotas</title>	
+</head>
+
+<body>
+    <div class="container-fluid" id="layout">
+        <header class="row header">
+            <div class="col-10 col-md-6 col-lg-4 hd-brand">
+                <img src="images/logo.png" alt="SMARTCONTROLBUS" height="67">
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-8 hd-config">
+                <div class="user">
+                    <span class="user-name">John Doe</span>
+                    <small>Smartsis</small>                
+                </div>
+                <div class="settings">
+                    <button type="button" class="ic-btn" onclick="userSet()">
+                        <span class="fas fa-cogs"></span>
+                    </button>                    
+                </div>
+
+                <div class="info-box" style="display: none;">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="btn-group">
+                                <button type="button" id="changePsw" class="btn bg-white ic-blue ripple" data-collapse="change-psw">
+                                    <span class="fas fa-lock icon"></span>
+                                    <span class="caption">SENHA</span>
+                                </button>
+                                <button type="button" id="logout" class="btn bg-white ic-blue ripple" data-bind="">
+                                    <span class="fas fa-power-off icon"></span>
+                                    <span class="caption">SAIR</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row avCollpase" id="change-psw" style="display: none;">
+                        <div class="col-12">
+                            <div class="change-psw-form">
+                                <div class="form-control">
+                                    <label class="label-field">Senha atual</label>
+                                    <input type="password" id="current-psw" class="input-field psw" data-bind="">
+                                    <span class="fas fa-eye ic-field toggle-psw" toggle="#current-psw"></span>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label-field">Nova senha</label>
+                                    <input id="new-psw" type="password" class="input-field psw" data-bind="">
+                                    <span class="fas fa-eye ic-field toggle-psw" toggle="#new-psw"></span>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label-field">Confirmar nova senha</label>
+                                    <input id="confirm-new-psw" type="password" class="input-field psw" data-bind="">
+                                    <span class="fas fa-eye ic-field toggle-psw" toggle="#confirm-new-psw"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="btn-group">
+                                <button type="button" id="save-changed-psw" class="btn bg-success ripple" data-bind="">
+                                    <span class="fas fa-check icon"></span>
+                                    <span class="caption">SALVAR</span>
+                                </button>
+                                <button type="button" id="cancel-changed-psw" class="btn bg-danger ripple" data-bind="">
+                                    <span class="fas fa-times icon"></span>
+                                    <span class="caption">CANCELAR</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 col-md-1 btn-menu">
+                <button type="button" class="ic-btn hidden" onclick="showMenu()">
+                    <span class="fas fa-bars"></span>
+                </button> 
+                <button type="button" class="ic-btn visible dn" onclick="hideMenu()">
+                    <span class="fas fa-times"></span>
+                </button> 
+            </div>
+        </header>
+
+        <section class="row wrap-content">
+            <nav class="col-12 col-lg-3 col-xxl-2" id="sidebar">
+                <ul class="menu">
+                    <li class="nav-config">
+                        <div class="user">
+                            <span class="user-name">John Doe</span>
+                            <small>Smartsis</small>                
+                        </div>
+                        <div class="settings">
+                            <button type="button" class="ic-btn" onclick="userSetMob()">
+                                <span class="fas fa-cogs"></span>
+                            </button>                     
+                        </div>
+                    </li>
+                    <li class="info-box-mob" style="display: none;">
+                        <div class="btn-group">
+                            <button type="button" id="changePswMob" class="btn bg-white ic-blue ripple" data-collapse="change-psw-mob">
+                                <span class="fas fa-lock icon"></span>
+                                <span class="caption">SENHA</span>
+                            </button>
+                            <button type="button" id="logout" class="btn bg-white ic-blue ripple" data-bind="">
+                                <span class="fas fa-power-off icon"></span>
+                                <span class="caption">SAIR</span>
+                            </button>
+                        </div>
+    
+                        <div class="avCollpase" id="change-psw-mob" style="display: none;">
+                            <div class="change-psw-form-mob">
+                                <div class="form-control">
+                                    <label class="label-field">Senha atual</label>
+                                    <input id="current-psw-mob" type="password" class="input-field psw-mob" data-bind="">
+                                    <span class="fas fa-eye ic-field toggle-psw-mob" toggle="#current-psw-mob"></span>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label-field">Nova senha</label>
+                                    <input id="new-psw-mob" type="password" class="input-field psw-mob" data-bind="">
+                                    <span class="fas fa-eye ic-field toggle-psw-mob" toggle="#new-psw-mob"></span>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label-field">Confirmar nova senha</label>
+                                    <input id="confirm-new-psw-mob" type="password" class="input-field psw-mob" data-bind="">
+                                    <span class="fas fa-eye ic-field toggle-psw-mob" toggle="#confirm-new-psw-mob"></span>
+                                </div>
+                            </div>
+    
+                            <div class="btn-group">
+                                <button type="button" id="saveChangedPsw" class="btn bg-success ripple" data-bind="">
+                                    <span class="fas fa-check icon"></span>
+                                    <span class="caption">SALVAR</span>
+                                </button>
+                                <button type="button" id="cancelChangedPswMob" class="btn bg-danger ripple" data-bind="">
+                                    <span class="fas fa-times icon"></span>
+                                    <span class="caption">CANCELAR</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="nav-title">
+                            <span class="fas fa-route icon"></span>
+                            <span class="caption">CONTROLE DE ROTAS</span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="rotas-atuais.html">
+                            <span class="fas fa-map-marker-alt icon"></span>
+                            <span class="caption">Rotas atuais</span>
+                        </a>
+                    </li>
+                    <li class="current">
+                        <a href="proximas-rotas.html">
+                            <span class="fas fa-map-marker-alt icon"></span>
+                            <span class="caption">Próximas rotas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="historico.html">
+                            <span class="fas fa-history icon"></span>
+                            <span class="caption">Histórico</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="veiculos.html">
+                            <span class="fa-stack icon">
+                                <i class="fas fa-bus fa-stack-1x"></i>
+                                <i class="fas fa-slash fa-stack-1x ic-danger"></i>
+                            </span>
+                            <span class="caption">Veículos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="novo-horario.html">
+                            <span class="fas fa-clock icon"></span>
+                            <span class="caption">Novo horário</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <div class="nav-title">
+                            <span class="fas fa-file-signature icon"></span>
+                            <span class="caption">OCORRÊNCIAS</span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="ocorrencias.html">
+                            <span class="fas fa-search icon"></span>
+                            <span class="caption">Consultar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="nova-ocorrencia.html">
+                            <span class="fas fa-file icon"></span>
+                            <span class="caption">Nova ocorrência</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="status.html">
+                            <span class="fas fa-bookmark icon"></span>
+                            <span class="caption">Status</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tipos.html">
+                            <span class="fas fa-tag icon"></span>
+                            <span class="caption">Tipos</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-12 col-lg-9 col-xxl-10" id="main">
+                <div class="row content"><!--Copiar-->
+                    <div class="col-12">
+                        <h3 class="h3 mb-8">
+                            <span class="fas fa-map-marker-alt icon"></span>
+                            <span class="caption uppercase">Próximas rotas</span>
+                            <div class="tooltip">
+                                <span class="fas fa-question-circle icon"></span>
+                                <span class="tooltipText">
+                                    <p class="uppercase"><b>Painel de rotas</b></p>
+                                    <p>Para visualizar os itens no painel de rotas, selecione uma data e clique em <b>[FILTRAR]</b>.</p>
+                                    <p>É possível consultar o dia atual e datas anteriores.</p> 
+                                    <p>Se desejar modificar a ordenação dos itens, clique no cabeçalho de cada tabela que tenha o ícone <span class="fas fa-sort ml-1"></span>.</p>
+                                    <p>Clique no botão <span class="fas fa-map-marked-alt mx-1"></span> para visualizar no mapa.</p>
+                                    <p>Clique no botão <span class="fas fa-file-signature mx-1"></span> para visualizar ou abrir uma ocorrência.</p>
+                                    <p>Os ícones <span class="fas fa-file-signature mx-1 ic-danger"></span> em vermelho já possuem ocorrência.</p>
+                                    <p>Clique no ícone <span class="fas fa-bus mx-1"></span> para substituir o veículo.</p>
+                                </span>
+                            </div>                            
+                        </h3>
+                    </div>  
+
+                    <div class="col-12 mb-3">
+                        <h5 class="h5 company uppercase mb-5">
+                            <span class="caption uppercase">Laguna</span>
+                        </h5>
+
+                        <div class="tbl-box">
+                            <table class="table striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left sortTb"><span class="fas fa-sort icon mr-2"></span> Linha</th>
+                                        <th class="text-center sortTb"><span class="fas fa-sort icon mr-2"></span> Carro</th> 
+                                        <th class="text-center sortTb"><span class="fas fa-sort icon mr-2"></span>Partida</th>
+                                        <th class="text-center">1º cliente</th>
+                                        <th class="text-center sortTb"><span class="fas fa-sort icon mr-2"></span>Chegada</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left uppercase">Laguna Circular - Vogue Square</td>
+                                        <td class="text-center uppercase">
+                                            <button type="button" data-modal="modal-substituir-veiculo">
+                                                <span class="fas fa-bus icon"></span>
+                                                <span class="caption">V-31</span>
+                                            </button>    
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">15:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">16:00</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">16:00</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-warning" data-modal="modal-smarttrack">
+                                                <span class="fas fa-map-marked-alt"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-danger" data-modal="modal-ocorrencia">
+                                                <span class="fas fa-file-signature"></span>
+                                            </button>                                   
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left uppercase">Laguna x Alvorada - Expresso</td>
+                                        <td class="text-center uppercase">
+                                            <button type="button" data-modal="modal-substituir-veiculo">
+                                                <span class="fas fa-bus icon"></span>
+                                                <span class="caption">V-32</span>
+                                            </button>    
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">15:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">20:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">20:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-warning" data-modal="">
+                                                <span class="fas fa-map-marked-alt"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-blue" data-modal="modal-nova-ocorrencia">
+                                                <span class="fas fa-file-signature"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mb-3 mt-15">
+                        <h5 class="h5 company uppercase mb-5">
+                            <span class="caption uppercase">O2 Corporate & Offices</span>
+                        </h5>
+
+                        <div class="tbl-box">
+                            <table class="table striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left sortTb"><span class="fas fa-sort icon mr-2"></span> Linha</th>
+                                        <th class="text-center sortTb"><span class="fas fa-sort icon mr-2"></span> Carro</th> 
+                                        <th class="text-center sortTb"><span class="fas fa-sort icon mr-2"></span>Partida</th>
+                                        <th class="text-center">1º cliente</th>
+                                        <th class="text-center sortTb"><span class="fas fa-sort icon mr-2"></span>Chegada</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left uppercase">Barra Shopping</td>
+                                        <td class="text-center uppercase">
+                                            <button type="button" data-modal="modal-substituir-veiculo">
+                                                <span class="fas fa-bus icon"></span>
+                                                <span class="caption">4600</span>
+                                            </button>    
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">16:00</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:20</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:20</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-warning" data-modal="">
+                                                <span class="fas fa-map-marked-alt"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-blue" data-modal="modal-nova-ocorrencia">
+                                                <span class="fas fa-file-signature"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left uppercase">Barra Shopping</td>
+                                        <td class="text-center uppercase">
+                                            <button type="button" data-modal="modal-substituir-veiculo">
+                                                <span class="fas fa-bus icon"></span>
+                                                <span class="caption">9000</span>
+                                            </button>    
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">16:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:30</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-warning" data-modal="">
+                                                <span class="fas fa-map-marked-alt"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-blue" data-modal="modal-nova-ocorrencia">
+                                                <span class="fas fa-file-signature"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-left uppercase">Barra Shopping</td>
+                                        <td class="text-center uppercase">
+                                            <button type="button" data-modal="modal-substituir-veiculo">
+                                                <span class="fas fa-bus icon"></span>
+                                                <span class="caption">7700</span>
+                                            </button>    
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:00</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:40</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="time-forecast">17:40</span>
+                                            <span class="real-time bg-light"></span>
+                                        </td>
+                                        <td class="text-right tbl-actions">
+                                            <button type="button" class="ic-btn ic-warning" data-modal="">
+                                                <span class="fas fa-map-marked-alt"></span>
+                                            </button> 
+                                            <button type="button" class="ic-btn ic-blue" data-modal="modal-nova-ocorrencia">
+                                                <span class="fas fa-file-signature"></span>
+                                            </button>                                        
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
+            
+        <footer class="row footer">
+            <div class="col-12">
+                <p><span>&copy; SMART<b style="font-weight: 900;">CONTROL</b>BUS - Um produto Smartsis. &nbsp;</span> | &nbsp;&nbsp;<b style="font-weight: 900;" id="spnTimer"></b></p>
+            </div>
+        </footer>        
+
+        <!-- Modal Ocorrência -->
+        <div id="modal-ocorrencia" class="modal">
+            <div class="modal-dialog" style="width: 80%; max-width: 80%;">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h4 class="h4 modal-title">
+                            <span class="fas fa-file-signature ic-danger icon"></span>
+                            <span class="caption uppercase ic-danger">Ocorrências</span>
+                        </h4>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="h5 company uppercase mb-5">
+                                    <span class="caption uppercase">Laguna Circular - Vogue Square - V-31 - 15:30 | 16:30</span>
+                                </h5>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="tbl-group">
+                                    <div class="tbl-results">
+                                        <span>1 ocorrência encontrada.</span>
+                                    </div>  
+                                    
+                                    <button type="button" id="" class="btn bg-warning ripple mr-10" data-modal="modal-nova-ocorrencia">
+                                        <span class="fas fa-plus icon"></span>
+                                        <span class="caption">NOVA OCORRÊNCIA</span>
+                                    </button> 
+
+                                    <div class="tooltip">
+                                        <span class="fas fa-question-circle icon"></span>
+                                        <span class="tooltipText">
+                                            <p class="uppercase"><b>Ocorrências</b></p>
+                                            <p>Clique no item da lista desejado para visualizar os detalhes da ocorrência.</p>
+                                            <p>Para cadastrar uma nova ocorrência, clique no botão "Nova Ocorrência".</p> 
+                                            <p>Preencha os dados (os campos obrigatórios são marcados com <b class="ic-danger">*</b>).</p>
+                                            <p>Clique no botão "Adicionar" para incluir novo andamento.</p>
+                                            <p>Clique no botão "Salvar" para salvar.</p>
+                                            <p>Clique no botão "Cancelar" para retornar a lista sem salvar.</p>
+                                        </span>
+                                    </div>                                    
+                                </div>    
+                            </div>                           
+
+                            <div class="col-12 mb-3">
+                                <div class="tbl-box">
+                                    <table class="table striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left sortTb"><span class="fas fa-sort icon mr-2"></span> Data</th>
+                                                <th class="text-left sortTb"><span class="fas fa-sort icon mr-2"></span> Linha</th> 
+                                                <th class="text-left sortTb"><span class="fas fa-sort icon mr-2"></span>Status</th>
+                                                <th class="text-left">Título</th>
+                                                <th class="text-left">Descrição</th>
+                                                <th class="text-right"></th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-left uppercase">21/08/2019 - 18:07</td>
+                                                <td class="text-left uppercase">Laguna Circular - Vogue Square</td>
+                                                <td class="text-left uppercase">Abertura</td>
+                                                <td class="text-left uppercase">Testando ocorrência</td>
+                                                <td class="text-left uppercase">Teste de ocorrência aberta SS.</td>
+                                                <td class="text-right tbl-actions">
+                                                    <button type="button" class="ic-btn ic-blue" data-modal="modal-detalhes-ocorrencia">
+                                                        <span class="fas fa-eye"></span>
+                                                    </button>                                                                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Detalhes da Ocorrência -->
+        <div id="modal-detalhes-ocorrencia" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h4 class="h4 modal-title">
+                            <span class="caption uppercase">Ocorrência nº 13</span>
+                        </h4>
+                        <button type="button" class="close" onclick="modalOccurrencyDetails(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">                                                   
+                                <fieldset class="fieldset">
+                                    <legend class="legend">
+                                        <span class="caption uppercase">Abertura</span>
+                                    </legend>
+                        
+                                    <div class="row">
+                                        <div class="col-12 mb-5">                        
+                                            <ul>
+                                                <li><span>Data: </span>21/08/2019 - 18:07</li>
+                                                <li><span>Tipo: </span>Teste</li>
+                                                <li><span>Rota: </span>Laguna Circular - Vogue Square</li>
+                                                <li><span>Veículo: </span>V-33</li>
+                                                <li><span>Título: </span>Testando Ocorrência</li>
+                                                <li><span>Descrição: </span>Teste de ocorrência SS.</li>
+                                            </ul>                                           
+                                        </div>
+                                    </div>                   
+                                </fieldset> 
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="h5 company uppercase mb-5">
+                                            <span class="caption uppercase">Andamento</span>
+                                        </h5>
+                                    </div>
+                    
+                                    <div class="col-12">
+                                        <div class="tbl-box">
+                                            <table class="table striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-left">Data</th>
+                                                        <th class="text-left">Usuário</th> 
+                                                        <th class="text-left">Status</th>
+                                                        <th class="text-left">Título</th>
+                                                        <th class="text-left">Descrição</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-left uppercase">21/08/2019 - 18:13</td>
+                                                        <td class="text-left uppercase">John Doe</td>
+                                                        <td class="text-left uppercase">Fechada</td>
+                                                        <td class="text-left uppercase">Testando ocorrência</td>
+                                                        <td class="text-left uppercase">Teste de ocorrência aberta SS.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left uppercase">21/08/2019 - 18:07</td>
+                                                        <td class="text-left uppercase">John Doe</td>
+                                                        <td class="text-left uppercase">Abertura</td>
+                                                        <td class="text-left uppercase">Testando ocorrência</td>
+                                                        <td class="text-left uppercase">Teste de ocorrência fechada SS.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="btn-group">
+                                            <button type="button" id="" class="btn bg-warning ripple" data-collapse="add-novo-andamento">
+                                                <span class="fas fa-plus icon"></span>
+                                                <span class="caption">ADICIONAR</span>
+                                            </button> 
+                                        </div>  
+                                    </div>
+                    
+                                    <div class="col-12 avCollpase mt-5" id="add-novo-andamento" style="display: none;">                                           
+                                        <div class="extraform">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-3">                                                   
+                                                    <div class="form-control custom">
+                                                        <label class="label-field">Status <sup class="ic-danger">*</sup></label>
+                                                        <select class="input-field">
+                                                            <option value="">Selecione...</option>
+                                                        </select>                            
+                                                        <span class="fas fa-caret-down ic-field ic-select"></span>
+                                                    </div>   
+                                                </div>
+                                                <div class="col-12 col-lg-6">                                                   
+                                                    <div class="form-control">
+                                                        <label class="label-field">Título <sup class="ic-danger">*</sup></label>
+                                                        <input type="text" class="input-field"> 
+                                                    </div>    
+                                                </div>                     
+                                                <div class="col-12">  
+                                                    <div class="form-control txtarea">
+                                                        <label class="label-field">Descrição <sup class="ic-danger">*</sup></label>
+                                                        <textarea class="input-field"></textarea>
+                                                    </div>   
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="btn-group">
+                                                        <button type="button" id="" class="btn bg-success ripple">
+                                                            <span class="fas fa-check icon"></span>
+                                                            <span class="caption">SALVAR</span>
+                                                        </button> 
+                                                        <button type="button" id="" class="btn bg-danger ripple">
+                                                            <span class="fas fa-check icon"></span>
+                                                            <span class="caption">CANCELAR</span>
+                                                        </button>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Nova Ocorrência -->
+        <div id="modal-nova-ocorrencia" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h4 class="h4 modal-title">
+                            <span class="fas fa-file icon"></span>
+                            <span class="caption uppercase">Nova Ocorrência</span>
+                        </h4>
+                        <button type="button" class="close" onclick="modalNewOccurrency(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Data <sup class="ic-danger">*</sup></label>
+                                    <input type="text" class="input-field" value="09/08/2019">                            
+                                    <span class="fas fa-calendar-alt ic-field"></span>
+                                </div>    
+                            </div> 
+                            <div class="col-12 col-lg-8">                                                   
+                                <div class="form-control custom">
+                                    <label class="label-field">Tipo de ocorrência <sup class="ic-danger">*</sup></label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                    <button type="button" id="btn-add-new-type-slide" class="btn-icon bg-warning ripple" data-collapse="add-new-type-slide">
+                                        <span class="fas fa-plus icon"></span>
+                                    </button>   
+                                </div>   
+                            </div>
+
+                            <div class="col-12 avCollpase" id="add-new-type-slide" style="display: none;">                                                   
+                                <fieldset class="fieldset">
+                                    <legend class="legend">
+                                        <span class="fas fa-tag icon"></span>
+                                        <span class="caption uppercase">Adicionar novo tipo de ocorrência</span>
+                                    </legend>
+
+                                    <div class="row">
+                                        <div class="col-12 col-lg-4">                                                   
+                                            <div class="form-control">
+                                                <label class="label-field">Nome <sup class="ic-danger">*</sup></label>
+                                                <input type="text" class="input-field"> 
+                                            </div>    
+                                        </div>
+                                        <div class="col-12 col-lg-8">                                                   
+                                            <div class="form-control">
+                                                <label class="label-field">Descrição <sup class="ic-danger">*</sup></label>
+                                                <input type="text" class="input-field"> 
+                                            </div>   
+                                        </div>
+                                        <div class="col-12 col-lg-6">                                                   
+                                            <div class="form-control">
+                                                <label class="label-field">Peso <sup class="ic-danger">*</sup></label>
+                                                <select class="input-field">
+                                                    <option value="">Selecione...</option>
+                                                </select>                            
+                                                <span class="fas fa-caret-down ic-field ic-select"></span>
+                                            </div>   
+                                        </div>
+                                        <div class="col-12 col-lg-6">                                                   
+                                            <div class="form-control">
+                                                <label class="label-field">Status <sup class="ic-danger">*</sup></label>
+                                                <select class="input-field">
+                                                    <option value="">Em andamento</option>
+                                                </select>                            
+                                                <span class="fas fa-caret-down ic-field ic-select"></span>
+                                            </div>   
+                                        </div>
+                                    </div>
+    
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="btn-group">
+                                                <button type="button" id="" class="btn bg-success ripple">
+                                                    <span class="fas fa-check icon"></span>
+                                                    <span class="caption">SALVAR</span>
+                                                </button> 
+                                                <button type="button" id="cancel-add-new-type-slide" class="btn bg-danger ripple">
+                                                    <span class="fas fa-times icon"></span>
+                                                    <span class="caption">CANCELAR</span>
+                                                </button>  
+                                            </div>  
+                                        </div>
+                                    </div>                             
+                                </fieldset>                                
+                            </div>
+
+                            <div class="col-12">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Rota <sup class="ic-danger">*</sup></label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                            <div class="col-12">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Título <sup class="ic-danger">*</sup></label>
+                                    <input type="text" class="input-field"> 
+                                </div>    
+                            </div>                     
+                            <div class="col-12">  
+                                <div class="form-control txtarea">
+                                    <label class="label-field">Descrição <sup class="ic-danger">*</sup></label>
+                                    <textarea class="input-field"></textarea>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR</span>
+                        </button> 
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>            
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal SmartTrack -->
+        <div id="modal-smarttrack" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h4 class="h4 modal-title">
+                            <span class="fas fa-map-marked-alt icon"></span>
+                            <span class="caption uppercase">Laguna Circular - Vogue Square - V31 - 15:30 | 16:00</span>
+                        </h4>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12" id="map-location">                                                   
+                                <img src="images/map-exemple-2.jpg" alt="" width="100%">
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Substituir Veículo -->
+        <div id="modal-substituir-veiculo" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">                        
+                        <h4 class="h4 modal-title">
+                            <span class="fas fa-bus icon"></span>
+                            <span class="caption uppercase">Substituir Veículo</span>
+                        </h4>
+                        <button type="button" class="close" onclick="closeModal(this);">
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 mb-5">
+                                <p>Laguna x New York - via Alvorada - 15:10</p>
+                            </div>
+                            
+                            <div class="col-12 col-md-6">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Carro</label>
+                                    <select class="input-field">
+                                        <option value="">V-33</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                            <div class="col-12 col-md-6">                                                   
+                                <div class="form-control">
+                                    <label class="label-field">Carros disponíveis <sup class="ic-danger">*</sup></label>
+                                    <select class="input-field">
+                                        <option value="">Selecione...</option>
+                                    </select>                            
+                                    <span class="fas fa-caret-down ic-field ic-select"></span>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="modal-footer">
+                        <button type="button" id="" class="btn bg-success ripple">
+                            <span class="fas fa-check icon"></span>
+                            <span class="caption">SALVAR</span>
+                        </button> 
+                        <button type="button" id="" class="btn bg-danger ripple">
+                            <span class="fas fa-times icon"></span>
+                            <span class="caption">CANCELAR</span>
+                        </button>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui-1.12.1.min.js"></script>
+    <script src="js/jquery.fn.sortelements.js"></script>
+    <script src="js/av-base.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+</body>
+</html>
